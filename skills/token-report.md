@@ -7,7 +7,8 @@ Generate HTML reports for Claude API token usage statistics from CTok (https://s
 - User asks to generate token usage reports
 - User wants to analyze Claude API consumption
 - User needs to track API costs over time
-- User mentions "token report", "usage statistics", or "burn report"
+- User mentions "token", "报告", "usage", "statistics", "burn report", "消耗", "统计", or "API"
+- User requests reports for specific time periods (days, weeks, months)
 
 ## What This Skill Does
 
@@ -49,7 +50,7 @@ if ! command -v token-report &> /dev/null; then
   mkdir -p ~/.claude/tools
 
   # Clone from GitHub
-  git clone https://github.com/YOUR_USERNAME/token-report.git ~/.claude/tools/token-report
+  git clone https://github.com/hellovigoss/cc-burn-report.git ~/.claude/tools/token-report
 
   # Install globally
   cd ~/.claude/tools/token-report
@@ -268,7 +269,7 @@ fi
 **"git clone failed" error:**
 - Check internet connection
 - Verify GitHub repository URL is correct
-- Try manual clone: `git clone https://github.com/YOUR_USERNAME/token-report.git`
+- Try manual clone: `git clone https://github.com/hellovigoss/cc-burn-report.git`
 
 **"npm link failed" error:**
 - Check Node.js is installed: `node --version` (requires >= 18)
