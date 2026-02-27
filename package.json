@@ -1,0 +1,11 @@
+{
+  "name": "cc-burn-report",
+  "version": "1.0.0",
+  "description": "Claude Code Burn Report — token usage statistics CLI",
+  "bin": {
+    "token-report": "index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

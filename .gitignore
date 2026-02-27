@@ -1,0 +1,12 @@
+# 凭证配置（敏感信息）
+.token-report.json
+
+# 生成的报告
+*.html
+
+# Node
+node_modules/
+npm-debug.log*
+
+# macOS
+.DS_Store
