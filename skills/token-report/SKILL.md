@@ -1,3 +1,8 @@
+---
+name: token-report
+description: Generate HTML reports for Claude API token usage statistics from CTok. Use when user asks to generate token reports, analyze API consumption, track costs, or mentions "token", "报告", "usage", "statistics", "burn report", "消耗", "统计", or "API".
+---
+
 # Token Usage Report Generator
 
 Generate HTML reports for Claude API token usage statistics from CTok (https://subus.imds.ai).
