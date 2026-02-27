@@ -7,8 +7,27 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
-const CONFIG_FILE = path.join(__dirname, '.token-report.json');
+// Config file search paths (in priority order)
+const CONFIG_PATHS = [
+  path.join(process.cwd(), '.token-report.json'),           // 1. Current directory
+  path.join(os.homedir(), '.token-report.json'),            // 2. Home directory
+  path.join(__dirname, '.token-report.json'),               // 3. Tool directory (backward compat)
+];
+
+/**
+ * Find first existing config file
+ * @returns {string|null} Path to config file or null
+ */
+function findConfigFile() {
+  for (const configPath of CONFIG_PATHS) {
+    if (fs.existsSync(configPath)) {
+      return configPath;
+    }
+  }
+  return null;
+}
 
 /**
  * Load configuration from environment or config file
@@ -24,16 +43,17 @@ function loadConfig() {
 
   // Try to load from config file if env vars not set
   if (!config.email || !config.password) {
-    try {
-      if (fs.existsSync(CONFIG_FILE)) {
-        const fileConfig = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+    const configFile = findConfigFile();
+    if (configFile) {
+      try {
+        const fileConfig = JSON.parse(fs.readFileSync(configFile, 'utf8'));
         config.email = config.email || fileConfig.email;
         config.password = config.password || fileConfig.password;
         config.baseUrl = config.baseUrl || fileConfig.baseUrl;
         config.timezone = config.timezone || fileConfig.timezone;
+      } catch (error) {
+        // Ignore file read errors, will validate later
       }
-    } catch (error) {
-      // Ignore file read errors, will validate later
     }
   }
 
@@ -48,12 +68,12 @@ function loadConfig() {
 function validateConfig(config) {
   if (!config.email) {
     throw new Error(
-      'Email is required. Set TOKEN_REPORT_EMAIL env var or create .token-report.json in project root'
+      'Email is required. Set TOKEN_REPORT_EMAIL env var or create .token-report.json (current dir or ~/.token-report.json)'
     );
   }
   if (!config.password) {
     throw new Error(
-      'Password is required. Set TOKEN_REPORT_PASSWORD env var or create .token-report.json in project root'
+      'Password is required. Set TOKEN_REPORT_PASSWORD env var or create .token-report.json (current dir or ~/.token-report.json)'
     );
   }
 }
@@ -61,21 +81,28 @@ function validateConfig(config) {
 /**
  * Save configuration to file
  * @param {Object} config - Configuration object
+ * @param {string} location - 'global' or 'local' (default: 'global')
  */
-function saveConfig(config) {
+function saveConfig(config, location = 'global') {
   const configToSave = {
     baseUrl: config.baseUrl,
     email: config.email,
     password: config.password,
     timezone: config.timezone,
   };
-  fs.writeFileSync(CONFIG_FILE, JSON.stringify(configToSave, null, 2), 'utf8');
-  console.log(`Configuration saved to ${CONFIG_FILE}`);
+
+  const configPath = location === 'local'
+    ? CONFIG_PATHS[0]  // Current directory
+    : CONFIG_PATHS[1]; // Home directory
+
+  fs.writeFileSync(configPath, JSON.stringify(configToSave, null, 2), 'utf8');
+  console.log(`Configuration saved to ${configPath}`);
 }
 
 module.exports = {
   loadConfig,
   validateConfig,
   saveConfig,
-  CONFIG_FILE,
+  findConfigFile,
+  CONFIG_PATHS,
 };
