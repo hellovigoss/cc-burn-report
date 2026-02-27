@@ -1,0 +1,22 @@
+{
+  "name": "cc-burn-report",
+  "version": "1.0.0",
+  "description": "Generate HTML reports for Claude API token usage statistics from CTok - auto-installs CLI tool, guides configuration, and opens reports in browser",
+  "author": {
+    "name": "hellovigoss",
+    "url": "https://github.com/hellovigoss"
+  },
+  "homepage": "https://github.com/hellovigoss/cc-burn-report",
+  "repository": "https://github.com/hellovigoss/cc-burn-report",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "token-usage",
+    "api-statistics",
+    "burn-report",
+    "ctok",
+    "usage-analytics",
+    "cost-tracking"
+  ],
+  "skills": ["./skills/"]
+}
