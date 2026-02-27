@@ -77,26 +77,8 @@ token-report --help
 - **按 API 密钥统计** — 请求次数、输入/输出 Token、总消费
 - **按模型统计** — 请求次数、输入/输出 Token、总消费
 
-## Claude Code 插件
+## 相关文档
 
-本项目提供 Claude Code 插件，让 AI 助手自动处理安装、配置和报告生成。
-
-**安装插件：**
-```bash
-# 方式 1：通过 Claude Code CLI
-/plugins install https://github.com/hellovigoss/cc-burn-report
-
-# 方式 2：手动克隆
-git clone https://github.com/hellovigoss/cc-burn-report.git ~/.claude/plugins/local/cc-burn-report
-```
-
-**使用示例：**
-- "生成最近 30 天的 token 报告"
-- "统计我的 API 消耗"
-- "创建 burn report"
-
-详见 [.claude-plugin/](/.claude-plugin/) 和 [skills/README.md](skills/README.md)
-
-## 开发
-
-详见 [CLAUDE.md](CLAUDE.md) 了解项目架构和开发指南。
+- [CLAUDE.md](CLAUDE.md) - 项目架构和开发指南
+- [.claude-plugin/](.claude-plugin/) - Claude Code 插件配置
+- [skills/README.md](skills/README.md) - Skill 详细说明
