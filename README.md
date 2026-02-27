@@ -52,35 +52,7 @@ cp token-report-example.json ~/.token-report.json
 # 编辑 ~/.token-report.json 填入你的凭证
 ```
 
-## 配置
-
-复制示例文件并填入你的凭证：
-
-```bash
-cp token-report-example.json .token-report.json
-```
-
-编辑 `.token-report.json`：
-
-```json
-{
-  "baseUrl": "https://subus.imds.ai",
-  "email": "your-email@example.com",
-  "password": "your-password",
-  "timezone": "Asia/Shanghai"
-}
-```
-
-> `.token-report.json` 已在 `.gitignore` 中，不会被提交。
-
-也可以用环境变量代替：
-
-```bash
-export TOKEN_REPORT_EMAIL="your-email@example.com"
-export TOKEN_REPORT_PASSWORD="your-password"
-```
-
-## 使用
+## CLI 使用
 
 ```bash
 # 最近 7 天（默认）
