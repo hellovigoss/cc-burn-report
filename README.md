@@ -4,27 +4,12 @@ CLI 工具，从 [CTok](https://subus.imds.ai) 获取 API 使用数据，生成 
 
 ## 快速开始
 
-### 方式 1：通过 Claude Code 插件（推荐）
+### 方式 1：通过 Claude Code Skill（推荐）
 
-**安装插件：**
+**一键安装 Skill：**
 
-在 Claude Code 中运行：
-```
-/plugins install https://github.com/hellovigoss/cc-burn-report
-```
-
-或者手动安装：
 ```bash
-# 克隆插件到 Claude 插件目录
-git clone https://github.com/hellovigoss/cc-burn-report.git ~/.claude/plugins/local/cc-burn-report
-
-# 在 Claude Code 中启用插件
-# 打开 ~/.claude/settings.json，添加：
-{
-  "enabledPlugins": {
-    "cc-burn-report@local": true
-  }
-}
+curl -fsSL https://raw.githubusercontent.com/hellovigoss/cc-burn-report/main/skills/token-report/SKILL.md -o ~/.claude/skills/token-report/SKILL.md
 ```
 
 安装后，直接对 Claude Code 说：
@@ -32,10 +17,11 @@ git clone https://github.com/hellovigoss/cc-burn-report.git ~/.claude/plugins/lo
 - "帮我统计 API 消耗"
 - "生成 burn report"
 
-插件会自动：
-1. 从 GitHub 安装 CLI 工具
-2. 引导你配置 CTok 凭证
-3. 生成并打开 HTML 报告
+Skill 会自动：
+1. 🔧 从 GitHub 安装 CLI 工具（如果不存在）
+2. ⚙️ 引导你配置 CTok 凭证
+3. 📊 生成 HTML 报告
+4. 🌐 在浏览器中打开报告
 
 ### 方式 2：手动安装 CLI
 
@@ -80,5 +66,5 @@ token-report --help
 ## 相关文档
 
 - [CLAUDE.md](CLAUDE.md) - 项目架构和开发指南
-- [.claude-plugin/](.claude-plugin/) - Claude Code 插件配置
-- [skills/README.md](skills/README.md) - Skill 详细说明
+- [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) - 完整项目结构说明
+- [skills/README.md](skills/README.md) - Skill 详细说明和故障排除
