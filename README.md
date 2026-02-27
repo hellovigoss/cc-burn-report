@@ -4,12 +4,27 @@ CLI 工具，从 [CTok](https://subus.imds.ai) 获取 API 使用数据，生成 
 
 ## 快速开始
 
-### 方式 1：通过 Claude Code Skill（推荐）
+### 方式 1：通过 Claude Code 插件（推荐）
 
-**一键安装 Skill：**
+**安装插件：**
 
+在 Claude Code 中运行：
+```
+/plugins install https://github.com/hellovigoss/cc-burn-report
+```
+
+或者手动安装：
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hellovigoss/cc-burn-report/main/skills/token-report.md -o ~/.claude/skills/token-report.md
+# 克隆插件到 Claude 插件目录
+git clone https://github.com/hellovigoss/cc-burn-report.git ~/.claude/plugins/local/cc-burn-report
+
+# 在 Claude Code 中启用插件
+# 打开 ~/.claude/settings.json，添加：
+{
+  "enabledPlugins": {
+    "cc-burn-report@local": true
+  }
+}
 ```
 
 安装后，直接对 Claude Code 说：
@@ -17,12 +32,12 @@ curl -fsSL https://raw.githubusercontent.com/hellovigoss/cc-burn-report/main/ski
 - "帮我统计 API 消耗"
 - "生成 burn report"
 
-Skill 会自动：
+插件会自动：
 1. 从 GitHub 安装 CLI 工具
 2. 引导你配置 CTok 凭证
 3. 生成并打开 HTML 报告
 
-### 方式 2：手动安装
+### 方式 2：手动安装 CLI
 
 ```bash
 # 克隆仓库
@@ -90,13 +105,17 @@ token-report --help
 - **按 API 密钥统计** — 请求次数、输入/输出 Token、总消费
 - **按模型统计** — 请求次数、输入/输出 Token、总消费
 
-## Claude Code Skill
+## Claude Code 插件
 
-本项目提供 Claude Code skill，让 AI 助手自动处理安装、配置和报告生成。
+本项目提供 Claude Code 插件，让 AI 助手自动处理安装、配置和报告生成。
 
-**安装 Skill：**
+**安装插件：**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hellovigoss/cc-burn-report/main/skills/token-report.md -o ~/.claude/skills/token-report.md
+# 方式 1：通过 Claude Code CLI
+/plugins install https://github.com/hellovigoss/cc-burn-report
+
+# 方式 2：手动克隆
+git clone https://github.com/hellovigoss/cc-burn-report.git ~/.claude/plugins/local/cc-burn-report
 ```
 
 **使用示例：**
@@ -104,7 +123,7 @@ curl -fsSL https://raw.githubusercontent.com/hellovigoss/cc-burn-report/main/ski
 - "统计我的 API 消耗"
 - "创建 burn report"
 
-详见 [skills/README.md](skills/README.md)
+详见 [.claude-plugin/](/.claude-plugin/) 和 [skills/README.md](skills/README.md)
 
 ## 开发
 
